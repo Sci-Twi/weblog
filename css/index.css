@@ -1,0 +1,37 @@
+.main {
+  display: flex;
+  .menu {
+    flex-basis: 10%;
+  }
+  .link {
+    position: sticky;
+    top: 0;
+  }
+  .articleList {
+    flex-basis: 80%;
+    .articleTable {
+      width: 100%;
+      text-align: center;
+      border-style: solid;
+      border-color: rgb(140 140 140);
+      border-width: 1px 0;
+      tr {
+        height: 40px;
+      }
+      .time {
+        width: 15%;
+      }
+      .title {
+        width: 60%;
+      }
+      .tags {
+        width: 25%;
+      }
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #0c53c5;
+}
