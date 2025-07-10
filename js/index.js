@@ -1,6 +1,12 @@
 (function () {
   const articles = [
     {
+      name: "Dolya Town 1.0.7",
+      filename: "dolya-town-1-0-7.html",
+      tags: ["游戏", "特别惊喜像素地牢", "Roguelike"],
+      time: 1752148996904,
+    },
+    {
       name: "视野计算：递归投影算法",
       filename: "recursive-shadowcasting.html",
       tags: ["翻译", "算法", "RPG", "Roguelike"],
