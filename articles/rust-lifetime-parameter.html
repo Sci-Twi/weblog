@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Rust的生命周期与生命周期注解</title>
+  <link rel="stylesheet" href="../css/blog.css" />
+</head>
+<body>
+  <div class="main">
+    <div class="menu">
+      <div class="link">
+        <p>Sci-Twi<p>
+        <p><a href="../index.html" id="mainPage">主页</a></p>
+        <p><a target="_blank" id="githubPage">Github页面</a></p>
+      </div>
+    </div>
+    <div class="article">
+      <div class="title">
+        <h1>Rust的生命周期与生命周期注解</h1>
+        <div class="tags">
+          <div class="tag">Rust</div>
+          <div class="tag">代码</div>
+        </div>
+      </div>
+      <hr/>
+      <div class="text">
+        <p>rust中的生命周期机制是针对悬垂引用的解决方案。</p>
+        <p>生命周期即一个引用保持有效的作用域。编写代码时，要使内存比引用拥有更长的生命周期（基本上就是有效期）。如果要释放某块内存，先要销毁内存的引用变量。</p>
+        <p>如果一个函数或方法接收并返回引用参数，则可能需要生命周期注解。生命周期注解是对函数的一种限制，其将拒绝不满足约束条件的数据。</p>
+        <br>
+        <hr>
+        <p>示例：</p>
+        <pre>
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() > y.len() { x } else { y }
+}
+</pre>
+        <p>为什么“这两个参数和返回的引用存活的一样久”、“函数返回的引用的生命周期与函数参数所引用的值的生命周期的较小者一致”：</p>
+        <p>因为该函数返回x或者y，所以无论是x还是y销毁时，返回的引用都需要是已销毁的状态。所以两个参数和返回的引用的生命周期是相关的。</p>
+        <p>生命周期注解揭示了参数中的引用和返回值引用的联系，生命周期参数指定了哪个参数的生命周期与返回值的生命周期相关联。如果返回值的生命周期与参数完全没有关联，即返回的引用没有指向任何一个参数，那么唯一的可能就是它指向一个函数内部创建的值，从而导致悬垂引用。</p>
+        <br>
+        <hr>
+        <pre>
+pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+    vec![]
+}
+</pre>
+        <p>在这个例子中，我们表明返回的 vector 中应该包含引用参数 contents（而不是参数query）slice 的字符串 slice。换句话说，我们告诉 Rust 函数 search 返回的数据将与 search 函数中的参数 contents 的数据存在的一样久。为了使这个引用有效那么被 slice 引用的数据也需要保持有效。</p>
+      </div>
+    </div>
+  </div>
+  <script src="../js/blog.js"></script>
+</body>
+</html>

@@ -1,6 +1,12 @@
 (function () {
   const articles = [
     {
+      name: "Rust的生命周期与生命周期注解",
+      filename: "rust-lifetime-parameter.html",
+      tags: ["Rust", "代码"],
+      time: 1753191466514,
+    },
+    {
       name: "Dolya Town 1.0.7",
       filename: "dolya-town-1-0-7.html",
       tags: ["游戏", "特别惊喜像素地牢", "Roguelike"],
